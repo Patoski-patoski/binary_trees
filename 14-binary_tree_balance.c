@@ -4,7 +4,7 @@
  * binary_tree_balance- a function that measures the balance factor of a
  * binary tree
  *
- * @tree: a pointer to the root node of the tree to measure the balance factor 
+ * @tree: a pointer to the root node of the tree to measure the balance factor
  * Return:  measures the balance factor, otherwise 0
  *
  **/
