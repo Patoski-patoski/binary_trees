@@ -12,17 +12,20 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int rightPerfect = 0;
 	int leftPerfect = 0;
+	int rightLeaf = 0;
+	int leftLeaf = 0;
 
 	if (tree == NULL)
 		return (0);
-      
 	if (tree->left == NULL && tree->right == NULL)
 		return (0);
 
 	leftPerfect +=  binary_tree_height(tree->left);
 	rightPerfect +=  binary_tree_height(tree->right);
+	leftLeaf += binary_tree_leaves(tree->left);
+	rightLeaf += binary_tree_leaves(tree->right);
 
-	return ((leftPerfect == rightPerfect) ? 1 : 0);
+	return ((leftPerfect == rightPerfect && leftLeaf == rightLeaf) ? 1 : 0);
 }
 
 /**
@@ -48,4 +51,23 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	if (leftHeight > rightHeight)
 		return (leftHeight);
 	return (rightHeight);
+}
+
+
+/**
+ * binary_tree_leaves-  a function that counts the leaves in a binary tree
+ * @tree: a pointer to the root node of the tree to count the number of leaves
+ *
+ * Return: the number of leaves
+ *
+ **/
+size_t binary_tree_leaves(const binary_tree_t *tree)
+{
+	if (tree == NULL)
+		return (0);
+
+	if (tree->right == NULL && tree->left == NULL)
+		return (1);
+
+	return (binary_tree_leaves(tree->left) +  binary_tree_leaves(tree->right));
 }
