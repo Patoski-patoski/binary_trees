@@ -14,24 +14,24 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		const binary_tree_t *second)
 {
+
 	if (first == NULL || second == NULL)
 		return (NULL);
 
 	if (first->parent == second->parent)
 		return (first->parent);
 
-	binary_tree_t *sibling_first_parent = binary_tree_sibling(first->parent);
-	binary_tree_t *sibling_second_parent = binary_tree_sibling(second->parent);
-
-	if (first == sibling_second_parent)
+	if (first == binary_tree_sibling(second->parent))
 		return (first->parent);
 
-	if (second == sibling_first_parent)
+	if (second == binary_tree_sibling(first->parent))
 		return (second->parent);
 
 	binary_tree_t *ancestor = parent_child_check(first, second);
 
-	return (ancestor ? ancestor : NULL);
+	if (ancestor != NULL)
+		return (ancestor);
+	return (NULL);
 }
 
 /**
@@ -68,7 +68,7 @@ binary_tree_t *parent_child_check(const binary_tree_t *node,
 		const binary_tree_t *target)
 {
 	if (node->left == target || node->right == target)
-		return ((binary_tree_t *)node);
+		return (target->parent);
 
 	return (NULL);
 }
