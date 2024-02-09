@@ -27,12 +27,17 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (second == binary_tree_sibling(first->parent))
 		return (second->parent);
 
-	binary_tree_t *ancestor = parent_child_check(first, second);
+	binary_tree_t *ancestor1 = parent_child_check(first, second);
 
-	if (ancestor != NULL)
-		return (ancestor);
+	if (ancestor1 != NULL)
+		return (ancestor1);
+	binary_tree_t *ancestor2 = parent_child_check(second, first);
+
+	if (ancestor2 != NULL)
+		return (ancestor2);
 	return (NULL);
 }
+
 
 /**
  * binary_tree_sibling-  a function that finds the sibling of a node
