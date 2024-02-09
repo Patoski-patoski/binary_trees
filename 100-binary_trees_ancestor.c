@@ -26,8 +26,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (second == binary_tree_sibling(first->parent))
 		return (second->parent);
 
-	return parent_child_check(first, second);
-	return parent_child_check(second, first);
+	return (parent_child_check(first, second));
+	return (parent_child_check(second, first));
 
 	return (NULL);
 }
@@ -57,12 +57,13 @@ binary_tree_t *binary_tree_sibling(binary_tree_t *node)
  * parent_child_check- checks if either of two nodes are a parent of the other
  *
  * @node: the first node
- * @taget: the target node
+ * @target: the target node
  *
  * Return: a pointer to parent node, otherwise NULL
  **/
 
-binary_tree_t *parent_child_check(const binary_tree_t *node, const binary_tree_t *target)
+binary_tree_t *parent_child_check(const binary_tree_t *node,
+		const binary_tree_t *target)
 {
 	if (node->left == target || node->right == target)
 		return (target->parent);
