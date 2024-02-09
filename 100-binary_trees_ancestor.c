@@ -68,7 +68,7 @@ binary_tree_t *parent_child_check(const binary_tree_t *node,
 		const binary_tree_t *target)
 {
 	if (node->left == target || node->right == target)
-		return (binary_tree_t *)node;
+		return ((binary_tree_t *)node);
 
 	return (NULL);
 }
